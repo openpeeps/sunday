@@ -10,10 +10,7 @@
 # It is used to define the routes for the application.
 #
 
-routes:
-  get "/" # {.afterware: [gzipped].}
-    # GET route links to `getHomepage` controller
-
+routes do:
   group "/dashboard":
     {.middleware: [authenticate].}:
       # Dashboard overview
@@ -40,6 +37,11 @@ routes:
       post "/comments/{id:id}/approve"
       post "/comments/{id:id}/delete"
 
+      # Media routes
+      get "/media"
+      (get, post) -> "/media/upload"
+      (get, delete) -> "/media/{id:id}"
+
       # Plugins routes
       get "/plugins"
       # get "/plugins/{id:id}"
@@ -59,3 +61,27 @@ routes:
     (get, post) -> "/forgot-password"
     (get, post) -> "/reset-password"
     get "/logout"
+
+  #
+  # Front-end routes
+  #
+  get "/" {.middleware: [membership].}
+    # GET route links to `getHomepage` controller
+  
+  get "/feed.xml"
+    # GET route links to `getFeed` controller
+  
+  get "/sitemap.xml"
+    # GET route links to `getSitemap` controller
+
+  get "/{slug:slug}" {.middleware: [membership].}
+    # GET route links to `getSlug` controller, which handles
+    # rendering posts and pages based on the slug
+  
+  get "/category/{slug:slug}" {.middleware: [membership].}
+    # GET route links to `getCategorySlug` controller, which renders
+    # a list of posts in the specified category
+
+  get "/tag/{slug:slug}"  {.middleware: [membership].}
+    # GET route links to `getTagSlug` controller, which renders
+    # a list of posts with the specified tag

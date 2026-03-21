@@ -44,7 +44,7 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
     div.sticky-top.shadow.mb-3
       div.alert.alert-info.text-center.py-1.border-0.rounded-0.mb-0 > small
         strong "Thanks for trying ☀️ Sunday! "
-        span " Don't forget to star the project on 👉 "
+        span " Don't forget to star the project on 👉"
         a.text-light.ms-1
           href="https://github.com/openpeeps/sunday?utm_source=sunday_dashboard&utm_content=textlink": "GitHub @openpeeps/sunday"
 
@@ -108,14 +108,18 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
                       path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"
                       path d="M21 21l-6 -6"
             div.col-lg-5.text-end.align-self-center
-              // profile picture and name
-              div.dropdown.d-inline-block
-                a.text-decoration-none.text-dark href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                  img.me-2 style="border-radius:14px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdata.ipic.ai%2Fimages%2FdSwbAmVLo4MuUIw_1712121162.png&f=1&nofb=1&ipt=c9b6d2f2c8207f17a55627851a4e636cab6f5bec37ba8d299c7d05712697f877" width="36" height="36" alt="User Avatar"
-                  span: "George Lemon"
-                ul.dropdown-menu.dropdown-menu-end.rounded-3
-                  li > a.dropdown-item href=dashboard("profile"): "Profile"
-                  li > a.dropdown-item href="/auth/logout": "Logout"
+              div.d-flex.align-items-center.justify-content-end.gap-3
+                ul.navbar-nav.mb-2.mb-lg-0.me-auto
+                  li > a.nav-link href="/":
+                    icon("external-link")
+                    span.ms-1: "Visit website"
+                div.dropdown.d-inline-block
+                  a.text-decoration-none.text-dark href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    img.me-2 style="border-radius:14px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdata.ipic.ai%2Fimages%2FdSwbAmVLo4MuUIw_1712121162.png&f=1&nofb=1&ipt=c9b6d2f2c8207f17a55627851a4e636cab6f5bec37ba8d299c7d05712697f877" width="36" height="36" alt="User Avatar"
+                    span: "George Lemon"
+                  ul.dropdown-menu.dropdown-menu-end.rounded-3
+                    li > a.dropdown-item href=dashboard("profile"): "Profile"
+                    li > a.dropdown-item href="/auth/logout": "Logout"
           // The `@view` macro is a special macro that injects
           // the content of the specific view into this layout.
           div.row > div.col-lg-12.px-4

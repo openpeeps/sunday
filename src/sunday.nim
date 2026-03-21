@@ -50,6 +50,7 @@ App.services do:
 
   # init Tim Engine
   tim.init(
+    App,
     App.config("tim.source").getStr,
     App.config("tim.output").getStr,
     supranim.basePath,
@@ -79,7 +80,6 @@ when defined release:
         if req.path.startsWith("/assets/"):
           hasFoundResource =
             req.sendAssets(storagePath / "assets", req.path, res.getHeaders())
-
 
 #
 # Starts the application. This will start the HTTP

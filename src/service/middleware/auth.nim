@@ -14,5 +14,13 @@ newMiddleware authenticate:
     let userData = req.getClientData()
     if userSession.isAuthenticated():
       next() # continue to the next middleware
+  abort("/auth/login") # redirects to `GET /auth/login` page
 
+newMiddleware membership:
+  ## Checks if the user is authenticated and has an active
+  ## membership. If not, redirects to the login page.
+  withSession do:
+    let userData = req.getClientData()
+    if userSession.isAuthenticated():
+      next() # continue to the next middleware
   abort("/auth/login") # redirects to `GET /auth/login` page

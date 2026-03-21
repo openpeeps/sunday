@@ -24,14 +24,15 @@ initService PluginManager[Singleton]:
   client do:
     # Plugin manager callbacks for plugin load, unload, and error events
     proc onPluginLoaded(plugin: Plugin) =
-      echo plugin.getId()
-      echo "Plugin loaded: ", plugin.getName, " by ", plugin.getAuthor
+      # echo plugin.getId()
+      # echo "Plugin loaded: ", plugin.getName, " by ", plugin.getAuthor
+      discard
 
     proc onPluginUnloaded(plugin: Plugin) =
-      echo "Plugin unloaded: ", plugin.getName
+      discard
 
     proc onPluginError(plugin: Plugin, error: string) =
-      echo "Error in plugin ", plugin.getName, ": ", error
+      discard
 
     proc pluginManager*: ptr PluginManager {.inline.} =
       ## Returns the Singleton instance of the PluginManager
@@ -64,4 +65,3 @@ initService PluginManager[Singleton]:
       for path in walkFiles(pluginsPath / "*"):
         if path.splitFile.ext == pluginExt:
           let pluginId = pluginManager().load(path)
-          echo "Loaded plugin: ", path, " with ID: ", pluginId

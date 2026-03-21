@@ -40,6 +40,7 @@ initService DB[Global]:
       initOzarkPool(10)
       try:
         withDBPool do:
+
           # create database tables if not exists
           Models.table(Settings).prepareTable().exec()
           Models.table(MediaLibrary).prepareTable().exec()

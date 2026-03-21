@@ -13,9 +13,4 @@ import ../service/provider/[db, session, tim]
 
 ctrl getHomepage:
   ## renders the home page
-  var isAuth: bool
-  # withDBPool do:
-  #   let res = Models.table(Users).selectAll().where("id", "1").get()
-  #   if not res.isEmpty:
-  #     isAuth = true
-  render("index", local = &*{"isAuth": true})
+  renderFrontend("index")

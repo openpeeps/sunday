@@ -213,5 +213,5 @@ html[data-bs-theme='light'] .reply-box-area[data-has-draft="true"]::before {
 
 
 .card .sticky-bottom {
-  box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.40) !important
+  box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.40), 0 -10px 40px rgba(0,0,0,.15) !important
 }

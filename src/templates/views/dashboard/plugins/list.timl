@@ -16,7 +16,6 @@ div.row
               span: "Trashed"
               span.small.rounded-3.badge.bg-secondary.ms-1: "3"
 
-
 div.row.mb-2
   div.col-lg-12 > div.px-3
     div.row

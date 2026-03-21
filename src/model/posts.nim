@@ -7,7 +7,7 @@
 
 import pkg/supranim/model
 
-import user, category
+import ./users, ./categories
 
 newModel Posts:
   id {.pk.}: Serial
