@@ -1,0 +1,21 @@
+# A simple publishing platform powered by Supranim,
+# a modern web framework for Nim.
+#
+# (c) 2026 George Lemon | AGPLv3 License
+#     Made by Humans from OpenPeeps
+#     https://github.com/openpeeps/sunday
+
+import std/[os, json]
+
+import pkg/[bag, ozark]
+import pkg/supranim/[core/paths, controller]
+import ../service/provider/[db, session, tim]
+
+ctrl getHomepage:
+  ## renders the home page
+  var isAuth: bool
+  # withDBPool do:
+  #   let res = Models.table(Users).selectAll().where("id", "1").get()
+  #   if not res.isEmpty:
+  #     isAuth = true
+  render("index", local = &*{"isAuth": true})

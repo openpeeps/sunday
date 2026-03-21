@@ -1,0 +1,34 @@
+macro showNotifications() =
+  for $msg in $this["notifications"]:
+    div.alert.alert-danger.border-0 > p.mb-0: $msg
+div.row.align-items-center.vh-100
+  div.col-xl-8.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
+    div.col-lg-7 > div.p-5.my-5 > div.p-5
+      div.row.mb-3 > div.col-12.d-flex.justify-content-between
+        a.text-decoration-none.text-light href="/": "&#8592; Homepage"
+        a.text-decoration-none.text-light
+          href="/auth/register": "Create an account &#8594;"
+      
+      h1.display-6.fw-bold.mb-3: "Authentication"
+      @showNotifications()
+
+      form method="POST" action="/auth/login"
+        div.form-floating.mb-3
+          input.form-control.rounded-4 name="email" type="email" placeholder="Email address"
+          label: "Email address"
+
+        div.form-floating.mb-3
+          input.form-control.rounded-4 name="password" type="password" placeholder="Password"
+          label: "Password"
+
+        input type="hidden" name="csrf" value=$this["csrf"]
+        
+        div.row > div.col-12.d-flex.justify-content-between.align-items-center
+          a.text-light href="/auth/forgot-password": "Forgot password?"
+          button.btn.btn-primary.border-2.rounded-3.px-4.fw-bold: "Log in to your account"
+
+    div.col-lg-5.bg-cover.position-relative style="background-image:url(" & $app["login_cover"] & ")"
+      div.d-flex.flex-column.h-100
+        div.d-flex.justify-content-center.align-items-center.h-100 > img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
+        div.d-flex.justify-content-center.align-items-start.mb-3.position-relative style="z-index:1"
+          a.small.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@maplerockdesign": "@maplerockdesign"

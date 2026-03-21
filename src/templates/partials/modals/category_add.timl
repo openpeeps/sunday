@@ -1,0 +1,30 @@
+div#modalAddCategory class="modal fade" tabindex="-1"
+  div.modal-dialog.modal-dialog-centered
+    div.modal-content.rounded-4.p-4
+      div.modal-header.border-0.align-items-start.pb-0
+        div.w-100
+          h4: "Add a Category"
+          p.text-muted: "Create a new category to organize your posts."
+        button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+      div.modal-body.pb-0
+        form data-js-action=dashboard("categories/create")
+          div.mb-3
+            label.form-label for="categoryName": "Name"
+            input#categoryName.form-control type="text" placeholder="Enter category name"
+          div.mb-3
+            label.form-label for="categoryName": "Slug"
+            input#categoryName.form-control type="text" placeholder="The URL-friendly version of the category"
+          div.mb-3
+            label.form-label for="categoryDescription": "Description (optional)"
+            textarea#categoryDescription.form-control rows="3" placeholder="Enter category description"
+          div.modal-footer.border-0.justify-content-between.p-0
+            button.btn.btn-sm.rounded-3 type="button" data-bs-dismiss="modal": "Close"
+            button.btn.btn-primary.btn-sm.rounded-3 type="submit" data-js-submit="Creating Category...": "Create Category"
+
+script: """
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('[data-trigger="modalAddCategory"]').addEventListener('click', function(e) {
+    (new bootstrap.Modal('#modalAddCategory')).show()
+  });
+})
+"""

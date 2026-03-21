@@ -1,0 +1,86 @@
+div.row > div.col-12.pt-4.pb-2 > h2: "Create post"
+
+div.row.g-4
+  div.col-lg-9
+    div.row.mb-3 > div.col-12
+      input#form-action-title.form-control.form-control-lg.rounded-4.border-2 type="text" placeholder="Untitled..."
+      div.px-3 > div.card.rounded-top-0.rounded-bottom-3.border-top-0
+        div.card-body.py-1.px-3
+          small.text-muted: "Permalink: "
+            a#input-inline-slug.text-info: 
+            a.ms-2.btn.btn-outline-info.border-2.rounded-3.py-0.btn-sm.px-1
+              data-sunday-target="#input-inline-slug" href="#" > small.fw-medium: "Edit"
+    
+    div.row > div.col-12
+      div.card.rounded-4.shadow-sm
+        div.card-body.p-4
+          div.editor-wrapper.px-4
+            // the editor will be initialized here by JavaScript
+
+  // the right sidebar for post settings
+  div.col-lg-3
+    div.row.mb-4 > div.col-12
+      div.card.d-flex.p-2.justify-content-center.align-items-center.rounded-4 style="flex-direction: inherit"
+        div.btn-group.me-2
+          button#btn-action-save.btn.btn-primary.rounded-start-3.px-4
+            span.fw-bold: "Publish now"
+          button#btn-action-save-opts.btn.btn-primary.dropdown-toggle.dropdown-toggle-split.border-start.rounded-end-3 data-bs-toggle="dropdown" aria-expanded="false"
+            span.visually-hidden: "Toggle Dropdown"
+          ul.dropdown-menu.dropdown-menu-end.rounded-3
+            li > a.dropdown-item data-action-btn="schedule": "Schedule for later"
+            li > a.dropdown-item data-action-btn="draft": "Save as Draft"
+        div.dropdown.ms-2
+          button.btn.border-0.dropdown-toggle.dropdown-toggle-split.px-0 data-bs-toggle="dropdown" aria-expanded="false"
+            svg.me-1 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              path stroke="none" d="M0 0h24v24H0z" fill="none"
+              path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
+              path d="M8 12l0 .01"
+              path d="M12 12l0 .01"
+              path d="M16 12l0 .01"
+          ul.dropdown-menu.dropdown-menu-end.rounded-3
+            li > a.dropdown-item
+              div.form-check.form-switch
+                input.form-check-input type="checkbox" id="toggleComments" checked
+                label.form-check-label for="toggleComments": "Enable comments"
+            li > a.dropdown-item
+              div.form-check.form-switch
+                input.form-check-input type="checkbox" id="togglePublicStats"
+                label.form-check-label for="togglePublicStats": "Show public stats"
+            li > a.dropdown-item data-action-btn="draft"
+              svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                path stroke="none" d="M0 0h24v24H0z" fill="none"
+                path d="M13 21h-6a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10"
+                path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" 
+                path d="M8 11v-4a4 4 0 1 1 8 0v4" 
+                path d="M21 15h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" 
+                path d="M19 21v1"
+                path d="M19 14v1"
+              span.ms-2: "Paywall settings"
+    div.row.mb-4 > div.col-12
+      div.card.rounded-4.shadow-sm
+        div.card-body.p-3
+          div.row.align-items-center
+            div.col > h6.mb-0: "Categories"
+            div.col.text-end
+              a.btn.btn-sm.btn-outline-info.rounded-pill.border-2.p-0 style="line-height:0" data-trigger="modalAddCategory"
+                svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  path d="M12 5l0 14"
+                  path d="M5 12l14 0"
+          div.row > div.col-12 > p.text-muted.small: "Select categories for this post"
+          ul.dropdown-menu.d-block.position-static.rounded-3.overflow-auto.user-select-none style="max-height:230px"
+            for $cat in $this["categories"]["entries"]:
+              li > label.dropdown-item > div.form-check
+                input.form-check-input type="checkbox" id="category1" name=$cat["id"]
+                span: $cat["name"]
+
+script type="text/javascript": """
+  document.addEventListener('DOMContentLoaded', function() {
+    UI.Editor.init();
+    UI.Slug.init()
+    UI.ClientSideForms.init()
+  });
+"""
+
+@include "modals/category_add"

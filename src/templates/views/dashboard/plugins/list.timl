@@ -1,0 +1,59 @@
+div.row
+  div.col-12.pt-4.pb-2
+    div.row
+      div.col-lg-6 > h2.mb-0: "Plugins"
+    div.row.mt-2.mb-3
+      div.col-lg-12 > div.px-3
+        ul.nav.nav-underline
+          li.nav-item
+            a.nav-link.active href=dashboard("plugins"): "All"
+          li.nav-item
+            a.nav-link href=dashboard("plugins?tab=active"): "Active"
+          li.nav-item
+            a.nav-link href=dashboard("plugins?tab=deactivated"): "Deactivated"
+          li.nav-item
+            a.nav-link href=dashboard("plugins?tab=trashed")
+              span: "Trashed"
+              span.small.rounded-3.badge.bg-secondary.ms-1: "3"
+
+
+div.row.mb-2
+  div.col-lg-12 > div.px-3
+    div.row
+      div.col-lg-5: "Name"
+      div.col-lg-2.text-center: "Status"  
+      div.col-lg-2.text-center: "Author"
+
+div.row.g-3
+  for $plugin in $this["plugins"]:
+    div.col-lg-12 > div.card.rounded-4.shadow-sm
+      div.card-body.p-4
+        div.row
+          div.col-lg-5
+            h6.mb-1
+              a.text-decoration-none.text-light href="#": $plugin["name"]
+            p.text-muted.mb-0.lh-sm.small: "This is a simple plugin that demonstrates the capabilities of the plugin system."
+          div.col-lg-2.align-content-center.text-center
+            if $plugin["status"] == "pluginStatusLoaded":
+              span
+                icon("check")
+                span.ms-1: "Loaded"
+          div.col-lg-2.align-content-center.text-center
+            span: $plugin["author"]
+          div.col-lg-3.text-center.align-content-center
+            button.btn.btn-sm.btn-primary.rounded-3: "Activate"
+            div.dropdown.d-inline-block.ms-2.show-on-hover
+              button.btn.btn-sm.btn-outline-secondary.rounded-3.border-2.dropdown-toggle
+                type="button" data-bs-toggle="dropdown" aria-expanded="false": "Options"
+              ul.dropdown-menu.dropdown-menu-end.rounded-3.shadow-sm
+                li.border-bottom
+                  a.dropdown-item 
+                    span: "Edit"
+                    span.d-block.small.text-muted: "Modify post content"
+                li.border-bottom > a.dropdown-item href="#"
+                  span: "Open link"
+                  span.d-block.small.text-muted: "View post on website"
+                li
+                  a.dropdown-item href="#"
+                    span: "Trash"
+                    span.d-block.small.text-muted: "Move post to trash"

@@ -1,0 +1,79 @@
+style: """
+.card .show-on-hover {
+  opacity: 0;
+}
+
+html[data-bs-theme="dark"] .card {
+  transition: background-color 0.2s;
+}
+
+html[data-bs-theme="dark"] .card:hover {
+  --bs-card-bg: #1b1b1bff !important;
+}
+
+.card:hover .show-on-hover {
+    opacity: 1;
+}
+"""
+div.row
+  div.col-12.pt-4.pb-2
+    div.row
+      div.col-lg-6
+        h2.mb-0: "Posts"
+      div.col-lg-6.text-lg-end.align-self-center
+        a.btn.btn-primary.btn-sm.rounded-3 href=dashboard("posts/create"): "Create New Post"
+    div.row.mt-2.mb-3
+      div.col-lg-12 > div.px-3
+        ul.nav.nav-underline
+          li.nav-item
+            a.nav-link.active href=dashboard("posts"): "All"
+          li.nav-item
+            a.nav-link href=dashboard("posts?tab=published"): "Published"
+          li.nav-item
+            a.nav-link href=dashboard("posts?tab=drafts"): "Drafts"
+          li.nav-item
+            a.nav-link href=dashboard("posts?tab=trashed")
+              span: "Trashed"
+              span.small.rounded-3.badge.bg-secondary.ms-1: "3"
+
+div.row.mb-2
+  div.col-lg-12 > div.px-3
+    div.row
+      div.col-lg-5: "Article"
+      div.col-lg-2.text-center: "Views"
+      div.col-lg-2.text-center: "Comments"
+      div.col-lg-2.text-center: "Actions"  
+
+div.row.g-3
+  for $entry in $this["posts"]["entries"]:
+    const postId = $entry["id"]
+    const editLink = dashboard("posts/" & $postId)
+    div.col-lg-12 > div.card.rounded-4.shadow-sm
+      div.card-body.p-4
+        div.row
+          div.col-lg-5
+            h6.mb-1
+              if $entry["status"] != "0":
+                span.badge.bg-secondary.me-2: "Draft"
+              a.text-decoration-none.text-light href=$editLink: $entry["title"]
+            p.text-muted.mb-0.lh-sm.small: "An in-depth look at the advancements in AI technology and its impact on society."
+          div.col-lg-2.align-content-center.text-center
+            span: "1,254"
+          div.col-lg-2.align-content-center.text-center
+            span: $entry["extra"]["comments_count"]
+          div.col-lg-2.text-center.align-content-center
+            div.dropdown.d-inline-block.ms-2.show-on-hover
+              button.btn.btn-sm.btn-outline-secondary.rounded-3.border-2.dropdown-toggle
+                type="button" data-bs-toggle="dropdown" aria-expanded="false": "Options"
+              ul.dropdown-menu.dropdown-menu-end.rounded-3.shadow-sm
+                li.border-bottom
+                  a.dropdown-item href=$editLink
+                    span: "Edit"
+                    span.d-block.small.text-muted: "Modify post content"
+                li.border-bottom > a.dropdown-item href="#"
+                  span: "Open link"
+                  span.d-block.small.text-muted: "View post on website"
+                li
+                  a.dropdown-item href="#"
+                    span: "Trash"
+                    span.d-block.small.text-muted: "Move post to trash"

@@ -1,0 +1,50 @@
+{
+  "name": "sunday",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/storage/js/dashboard.js",
+  "directories": {
+    "test": "tests"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c rollup.config.js",
+    "watch": "rollup -c rollup.config.js -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.5",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.41.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "@tiptap/core": "latest",
+    "@tiptap/extension-code-block": "latest",
+    "@tiptap/extension-collaboration": "latest",
+    "@tiptap/extension-highlight": "latest",
+    "@tiptap/extension-image": "latest",
+    "@tiptap/extension-placeholder": "latest",
+    "@tiptap/extension-subscript": "latest",
+    "@tiptap/extension-superscript": "latest",
+    "@tiptap/extension-table": "latest",
+    "@tiptap/extension-table-cell": "latest",
+    "@tiptap/extension-table-header": "latest",
+    "@tiptap/extension-table-row": "latest",
+    "@tiptap/extension-task-item": "latest",
+    "@tiptap/extension-task-list": "latest",
+    "@tiptap/extension-text-align": "latest",
+    "@tiptap/extension-typography": "latest",
+    "@tiptap/extension-underline": "latest",
+    "@tiptap/pm": "latest",
+    "@tiptap/starter-kit": "latest",
+    "@tiptap/y-tiptap": "latest",
+    "@uppy/core": "latest",
+    "@uppy/dashboard": "latest",
+    "@uppy/tus": "latest",
+    "yjs": "latest"
+  }
+}

@@ -1,0 +1,24 @@
+div.row.vh-100.align-items-center
+  div.col-xl-8.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
+    div.col-lg-7 > div.p-5.my-5 > div.p-5
+      h4.h6.d-block.mb-3 > a.text-decoration-none.text-light href="/auth/login": "&#8592; Back to login"
+      h1.display-6.fw-bold.mb-3: "Forgot password"
+      p.lead: "Request a new password by entering your email address below."
+
+      // Display flash bag notifications (if any)
+      for $msg in $this["notifications"]:
+        div.alert.alert-info.border-0 > p.mb-0: $msg
+
+      form method="POST" action="/auth/forgot-password"
+        div.form-floating.mb-3
+          input.form-control.rounded-4 name="email" type="email" placeholder="Email address"
+          label: "Email address"
+        input type="hidden" name="csrf" value=$this["csrf"]
+        div.row > div.col-12.text-end
+          button.btn.btn-primary.border-2.rounded-3.px-4.fw-bold: "Request new password"
+
+    div.col-lg-5.bg-cover.position-relative style="background-image:url(" & $app["login_cover"] & ")"
+      div.d-flex.flex-column.h-100
+        div.d-flex.justify-content-center.align-items-center.h-100 > img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
+        div.d-flex.justify-content-center.align-items-start.mb-3.position-relative style="z-index:1"
+          a.small.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@maplerockdesign": "@maplerockdesign"

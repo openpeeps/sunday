@@ -1,0 +1,99 @@
+style: """
+.card .show-on-hover {
+  opacity: 0;
+}
+
+.card:hover .show-on-hover {
+    opacity: 1;
+}
+"""
+
+// Page header
+div.row > div.col-12.pt-4.pb-2
+  div.row
+    div.col-lg-6 > h2.mb-0: "Categories"
+    div.col-lg-6.text-lg-end.align-self-center
+      a.btn.btn-primary.btn-sm.rounded-3.btn-action-create-category: "Create Category"
+  div.row.mt-2.mb-3
+    div.col-lg-12 > div.px-3
+      ul.nav.nav-underline
+        li.nav-item
+          a.nav-link.active href=dashboard("categories"): "All"
+        li.nav-item
+          a.nav-link href=dashboard("categories?tab=trash"): "Trashed"
+
+if len($this["categories"]["entries"]) > 0:
+  div.row.mb-2 > div.col-lg-12 > div.px-3 > div.row
+    div.col-lg-5: "Category"
+    div.col-lg-5.text-center: "Posts"
+    div.col-lg-2.text-center: "Actions"
+  div.row.g-3
+    for $cat in $this["categories"]["entries"]:
+      const catid = toString($cat["id"])
+      // const totalPosts = $this["count_categories"][$catid]
+      div.col-lg-12 > div.card.rounded-4.shadow-sm
+        div.card-body.p-4
+          div.row
+            div.col-lg-5
+              h6.mb-1 > a.text-decoration-none.text-light data-target-id=$cat["id"]: $cat["name"]
+              p.text-muted.mb-0.lh-sm.small: $cat["description"]
+            div.col-lg-5.align-content-center.text-center > span: "12"
+            div.col-lg-2.text-center.align-content-center
+              div.dropdown.d-inline-block.ms-2.show-on-hover
+                button.btn.btn-sm.btn-outline-secondary.rounded-3.border-2.dropdown-toggle type="button"
+                    id="postOptions1" data-bs-toggle="dropdown" aria-expanded="false": "Options"
+                ul.dropdown-menu.dropdown-menu-end.rounded-3 aria-labelledby="postOptions1"
+                  li > a.dropdown-item href="#": "Edit"
+                  li > a.dropdown-item href="#": "Trash"
+else:
+  div.row.g-3
+    div.col-12.text-center > div.card.rounded-4 > div.card-body.p-4.text-muted
+      h5: "No categories found"
+      p.mb-0: "Create a new category to get started."
+
+div#manageCategoryModal class="modal fade" tabindex="-1" aria-labelledby="manageCategoryModalLabel" aria-hidden="true"
+  div.modal-dialog.modal-dialog-centered
+    div.modal-content.rounded-4.p-4
+      div.modal-header.border-0.align-items-start.pb-0
+        div.w-100
+          h4: "Edit Category"
+          p.text-muted: "Modify the details of your category below."
+        button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+      div.modal-body.pb-0
+        form data-js-action=dashboard("categories/create")
+          div.mb-3
+            label.form-label for="categoryName": "Name"
+            input#categoryName.form-control name="category_name" type="text" placeholder="Enter category name"
+          div.mb-3
+            label.form-label for="categoryName": "Slug"
+            input#categoryName.form-control name="category_slug" type="text" placeholder="The URL-friendly version of the category"
+          div.mb-3
+            label.form-label for="categoryDescription": "Description (optional)"
+            textarea#categoryDescription.form-control name="category_description" rows="3" placeholder="Enter category description"
+          div.modal-footer.border-0.justify-content-between.pt-0.mt-0
+            button.btn.btn-sm.rounded-3 type="button" data-bs-dismiss="modal": "Close"
+            button.btn.btn-primary.btn-sm.rounded-3 type="submit": "Save Changes"
+
+script: """
+document.addEventListener('DOMContentLoaded', function() {
+  UI.ClientSideForms.init()
+  const manageCategory = new bootstrap.Modal('#manageCategoryModal')
+
+  // trigger manage category modal on edit link click
+  document.querySelector('.btn-action-create-category').addEventListener('click', function(event) {
+    event.preventDefault()
+    manageCategory.show()
+  })
+
+  const categoryLinks = document.querySelectorAll('a[data-target-id]')
+  categoryLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault()
+      const categoryId = this.getAttribute('data-target-id')
+      // Fetch category data based on categoryId (this could be from a global JS object or an API)
+      // For demonstration, we'll use placeholder data
+      manageCategory.show()
+    })
+  })
+})
+"""

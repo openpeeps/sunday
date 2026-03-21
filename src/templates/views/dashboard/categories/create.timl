@@ -1,0 +1,35 @@
+div.row
+  div.col-12.pt-4.pb-2
+    h2: "Edit post"
+
+var data = {
+  title: "A simple article about artificial intelligence",
+  content: "An in-depth look at the advancements in AI technology and its impact on society"
+}
+
+div.row.g-4
+  div.col-lg-9
+    div.row.mb-4 > div.col-12
+      input.form-control.form-control-lg.rounded-4.border-2 type="text" placeholder="Post Title" value=$data.title
+    div.row > div.col-12
+      div.card.rounded-4.shadow-sm
+        div.card-body.p-4
+          p: $data.content
+  
+  div.col-lg-3
+    // the right sidebar for post settings
+    div.row.mb-4 > div.col-12
+      button.btn.btn-primary.btn-lg.w-100 type="button": "Save Changes"
+
+    div.row.mb-4 > div.col-12
+      div.card.rounded-4.shadow-sm
+        div.card-body.p-3
+          h5.mb-0: "Settings"
+
+          div.mb-3
+            label.form-label for="postStatus": "Status"
+            select.form-select.form-select-sm.rounded-3.border-2 id="postStatus"
+              option value="draft" selected: "Draft"
+              option value="published": "Published"
+          div.mb-3
+  

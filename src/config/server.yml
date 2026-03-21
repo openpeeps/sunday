@@ -1,0 +1,7 @@
+address: "127.0.0.1"
+port: 8000
+threads: 1
+type: AF_INET
+
+# address: "/tmp/supranim_starter.socket"
+# type: AF_UNIX

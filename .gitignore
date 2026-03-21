@@ -1,8 +1,11 @@
 .DS_Store
+bin/
 nimcache/
 nimblecache/
 htmldocs/
-testresults/
-/tests/*
-!/tests/*.nim
-!/tests/*.nims
+/src/storage/templates/*
+.env.yml
+.cache
+node_modules/
+build/
+package-lock.json

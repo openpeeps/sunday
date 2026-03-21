@@ -1,0 +1,23 @@
+div.row
+  div.col-12.pt-4.pb-2
+    h2: "Overview"
+    p: "Welcome back, George! Here's a summary of your blog's recent activity."
+
+div.row
+  div.col-md-4.mb-4
+    div.card.h-100.rounded-4
+      div.card-body.p-4
+        h5.card-title: "New Visitors"
+        h2.card-text: "1,254"
+
+  div.col-md-4.mb-4
+    div.card.h-100.rounded-4
+      div.card-body.p-4
+        h5.card-title: "Total Posts"
+        h2.card-text: $this["countPosts"]
+
+  div.col-md-4.mb-4
+    div.card.h-100.rounded-4
+      div.card-body.p-4
+        h5.card-title: "Total Comments"
+        h2.card-text: $this["countPosts"]
