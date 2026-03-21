@@ -42,8 +42,11 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
     """
   body
     div.sticky-top.shadow.mb-3
-      div.alert.alert-info.text-center.py-1.border-0.rounded-0.mb-0 > small: "Thanks for trying 🌞 Sunday v0.1.0! We are still in beta &mdash; Don't forget to"
-        a.text-light.ms-1 href="https://github.com/getvasco/vasco?utm_source=vasco_cms&utm_content=textlink": "★ on GitHub!"
+      div.alert.alert-info.text-center.py-1.border-0.rounded-0.mb-0 > small
+        strong "Thanks for trying ☀️ Sunday! "
+        span " Don't forget to star the project on 👉 "
+        a.text-light.ms-1
+          href="https://github.com/openpeeps/sunday?utm_source=sunday_dashboard&utm_content=textlink": "GitHub @openpeeps/sunday"
 
     div.container-fluid.px-0 > div.row.g-0 > div.col-lg-10.mx-auto > div.row.g-0
       div.col-lg-1
