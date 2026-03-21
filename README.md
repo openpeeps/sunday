@@ -4,14 +4,27 @@
 </p>
 
 <p align="center">
-  <code>nimble install sunday</code> | <a href="https://github.com/openpeeps/sunday/releases">Download from GitHub</a>
+  📦 <code>nimble install sunday</code> | ⬇️ <a href="https://github.com/openpeeps/sunday/releases">Download from GitHub</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/">API reference</a><br>
+  📚 <a href="https://github.com/">API reference</a><br>
   <img src="https://github.com/openpeeps/sunday/workflows/test/badge.svg" alt="Github Actions">  <img src="https://github.com/openpeeps/sunday/workflows/docs/badge.svg" alt="Github Actions">
 </p>
 
+## Key Features
+- Compiled, Fast and Lightweight with a small memory footprint
+- Built on top of the [Supranim web framework](https://github.com/supranin/supranim)
+- Posts, pages, comments, categories and tags
+- User authentication and management
+- **Media management** with file uploads
+- Tiptap-based rich text editor
+- Native plugin system for extensibility
+- Beautiful dashboard UI powered by **Bootstrap 5**
+- Themes system for easy customization based on **Tim Engine**
+
+> [!NOTE]
+> Sunday is still in active development. Expect frequent updates and new features as we work towards a stable release.
 
 ### ❤ Contributions & Support
 - 🐛 Found a bug? [Create a new Issue](https://github.com/openpeeps/supranim/issues)
@@ -21,5 +34,5 @@
 - 🥰 [Donate via PayPal address](https://www.paypal.com/donate/?hosted_button_id=RJK3ZTDWPL55C)
 
 ### 🎩 License
-Sunday Publishing Platform | `AGPLv3` license. [Made by Humans from OpenPeeps](https://github.com/openpeeps).<br>
+Sunday Publishing Platform | `AGPLv3` license. [Made in Europe by Humans from OpenPeeps](https://github.com/openpeeps).<br>
 Copyright &copy; 2026 OpenPeeps & Contributors &mdash; All rights reserved.
