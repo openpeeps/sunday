@@ -61,12 +61,17 @@ export const Editor = {
   }
 }
 
-
 export const ClientSideForms = {
-  init: () => {
-    document.querySelectorAll('form[data-js-action]').forEach(function(form) {
+  init: (opts = {}) => {
+    function resetSubmitter(submitter, previousText) {
+      submitter.disabled = false;
+      submitter.textContent = previousText;
+    }
+
+    document.querySelectorAll('form[data-js-action]').forEach((form) => {
       let action = form.getAttribute('data-js-action');
-      form.addEventListener('submit', function(e) {
+      let isDownloadable = form.getAttribute('data-js-downloadable') === 'true';
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
         let formData = new FormData(form);
         let jsonData = {};
@@ -76,6 +81,7 @@ export const ClientSideForms = {
 
         // disable the submitter while processing
         let submitter = e.submitter;
+        let previousText = submitter.textContent;
         submitter.disabled = true;
         submitter.textContent = submitter.getAttribute('data-js-submit') || 'Sending...';
 
@@ -84,9 +90,47 @@ export const ClientSideForms = {
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(jsonData)
         }).then(async (res) => {
-          let data = await res.json();
-          console.log(data);
-          // handle success or error messages here
+          if(res.status == 404) {
+            if(opts.on404) opts.on404();
+          } else if(res.status == 400) {
+            if(opts.on400) opts.on400();
+          } else if(res.status == 500) {
+            if(opts.on500) opts.on500();
+          }
+
+          if(!res.ok) {
+            resetSubmitter(submitter, previousText);
+            return;
+          }
+          
+          if (isDownloadable) {
+            // Get filename from Content-Disposition header
+            const disposition = res.headers.get('Content-Disposition');
+            let filename = 'downloaded_file';
+            if (disposition && disposition.includes('filename=')) {
+              filename = disposition.split('filename=')[1].replace(/["']/g, '');
+            }
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+          } else {
+            let data = await res.json();
+            if(opts.on200) opts.on200({
+              submitter: submitter,
+              responseData: data
+            });
+          }
+          
+          if(!opts.on200)
+            setTimeout(() => {
+              resetSubmitter(submitter, previousText);
+            }, 500);
         });
       });
     });

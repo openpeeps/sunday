@@ -1,8 +1,7 @@
-div.row
-  div.col-12.pt-4.pb-2
+div.row.pt-4.pb-2
+  div.col-12
     h2: "Overview"
     p: "Welcome back, George! Here's a summary of your blog's recent activity."
-
 div.row
   div.col-md-4.mb-4
     div.card.h-100.rounded-4

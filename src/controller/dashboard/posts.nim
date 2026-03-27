@@ -23,7 +23,6 @@ SELECT
 FROM posts
 ORDER BY posts.created_at DESC LIMIT 20 OFFSET 0;""").getWith(Posts)
     render("dashboard.posts.list", layout="dashboard", local = &*{
-      "isAuth": isAuth,
       "posts": posts,
     })
 
@@ -33,7 +32,6 @@ ctrl getDashboardPostsCreate:
   withDBPool do:
     let categories = Models.table(Categories).select(["id", "name"]).getAll()
     render("dashboard.posts.create", layout="dashboard", local = &*{
-      "isAuth": isAuth,
       "categories": categories,
     })
 
@@ -150,7 +148,6 @@ ctrl getDashboardPostsId:
       if not currentPost.isEmpty:
         let categories = Models.table(Categories).select(["id", "name"]).getAll()
         render("dashboard.posts.edit", layout="dashboard", local = &*{
-          "isAuth": isAuth,
           "notifications": userSession.getNotifications(req.getUriPath).get(@[]),
           "post": currentPost.first(),
           "categories": categories,

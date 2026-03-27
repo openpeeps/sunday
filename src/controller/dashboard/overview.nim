@@ -17,7 +17,6 @@ ctrl getDashboard:
     let countPosts = Models.table(Posts).select("id").getAll().len
     let countComments = Models.table(Comments).select("id").getAll().len
     render("dashboard.overview", layout="dashboard", local = &*{
-      "isAuth": isAuth,
       "countPosts": countPosts,
       "countComments": countComments
     })

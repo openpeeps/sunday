@@ -64,6 +64,6 @@ div.row
       for $x in 0..20:
         div.col-lg-2
           div.card.rounded-4.shadow-sm
-            div.card-body.p-2
-              figure.thumbnail-figure.position-relative.overflow-hidden.mb-0.rounded-3 style="min-height: 150px; background-image: url('https://www.thisiscolossal.com/wp-content/uploads/2020/11/wu-1.jpg'); background-size: cover;"
+            div.card-body.p-1
+              figure.thumbnail-figure.position-relative.overflow-hidden.mb-0.rounded-4 style="min-height: 150px; background-image: url('https://www.thisiscolossal.com/wp-content/uploads/2020/11/wu-1.jpg'); background-size: cover;"
                 figcaption.position-absolute.bottom-0.start-0.bg-dark.bg-opacity-50.text-light.px-2.py-1.small: "Some file name asd s.jpg"

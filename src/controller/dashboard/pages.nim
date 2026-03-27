@@ -20,14 +20,12 @@ ctrl getDashboardPages:
                       # .limit(20)
                       .getAll()
     render("dashboard.pages.list", layout="dashboard", local = &*{
-      "isAuth": isAuth,
       "pages": pages.toJson().fromJson()["entries"],
     })
 
 ctrl getDashboardPagesCreate:
   ## Renders the new post creation screen.
-  render("dashboard.pages.create",
-        layout="dashboard", local = &*{"isAuth": isAuth})
+  render("dashboard.pages.create", layout="dashboard", local = &*{})
 
 ctrl postDashboardPagesCreate:
   ## Handles the new post creation form submission.
@@ -38,7 +36,6 @@ ctrl getDashboardPagesId:
   let postId = req.params["id"].parseInt()
   render("dashboard.pages.edit", layout="dashboard",
     local = &*{
-      "isAuth": isAuth,
       "postId": postId
     }
   )

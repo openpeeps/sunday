@@ -14,15 +14,12 @@ ctrl getDashboardCategories:
     # for count in counters:
     #   countCategories.inc(parseInt(count.getCategoryId()))
     render("dashboard.categories.list", layout="dashboard", local = &*{
-      "isAuth": isAuth,
       "categories": categories
     })
 
 ctrl getDashboardCategoriesCreate:
   ## Renders the new category creation screen.
-  render("dashboard.categories.create", layout="dashboard", local = &*{
-    "isAuth": isAuth
-  })
+  render("dashboard.categories.create", layout="dashboard", local = &*{})
 
 ctrl postDashboardCategoriesCreate:
   ## Handles the new category creation form submission.
@@ -59,7 +56,6 @@ ctrl getDashboardCategoriesId:
   let categoryId = req.params["id"].parseInt()
   render("dashboard.categories.edit", layout="dashboard",
     local = &*{
-      "isAuth": isAuth,
       "categoryId": categoryId
     }
   )

@@ -32,7 +32,7 @@ proc startCommand(v: Values) =
 
 App.cli do:
   start path(directory):
-    ## Init the app with the given installation path
+    ## Start a Sunday app from specified directroy
 
 #
 # Initialize available Service Providers.
@@ -41,6 +41,11 @@ App.cli do:
 # `config/` directory.
 #
 App.services do:
+
+  # Initialize the global event emitter service. This service provides a
+  # singleton event emitter that can be used throughout the application to
+  # emit and listen for custom events.
+  events.init()
 
   # init DB Engine
   db.init()

@@ -6,7 +6,7 @@
 #     https://github.com/openpeeps/sunday
 
 import std/[macros, json, strutils, os,
-        httpcore, times, options]
+        httpcore, times, options, uri]
 
 import pkg/supranim/controller
 import pkg/supranim/support/slug
@@ -17,7 +17,7 @@ import pkg/[tim, iconim]
 import pkg/kapsis/interactive/prompts
 
 export HttpCode, render, `&*`
-export times.now, times.format
+export times.now, times.format, iconim
 
 initService Tim[Global]:
   # A singleton service that wraps the Tim Engine
@@ -79,6 +79,17 @@ initService Tim[Global]:
             # Return an HTML string for an icon
             return initValue($icon(args[0].stringVal[]).size(18))
           )
+
+        timEngineBackend.userScript.addProc("getCurrentTab", @[paramDef("path", ttyJson)], ttyString,
+          proc (args: StackView, argc: int): value.Value =
+            # A simple helper to determine the current active tab
+            # based on the given request path.
+            for q in decodeQuery(parseUri(args[0].jsonVal.getStr()).query):
+              if q[0] == "tab":
+                return initValue(q[1])
+            return initValue("")
+          )
+
         tim.initCommonStorage:
           {
             "path": req.getUrl(),

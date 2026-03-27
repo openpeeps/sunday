@@ -12,7 +12,7 @@
 
 routes do:
   group "/dashboard":
-    {.middleware: [authenticate].}:
+    {.middleware: [adminOnly].}:
       # Dashboard overview
       get "/"
 
@@ -44,11 +44,20 @@ routes do:
 
       # Plugins routes
       get "/plugins"
-      # get "/plugins/{id:id}"
+      post "/plugins/manage"
+      post "/plugins/manage/csrf"
+
+      get "/users"
+      (get, patch, delete) -> "/users/{id:id}"
+      (get, post) -> "/users/create"
 
       # Settings routes
       get "/settings"
-      get "/settings/users"
+      get "/settings/stats"
+      
+      post "/settings/freememory"
+      post "/settings/backup"
+
 
   # Account routes
   get "/account"

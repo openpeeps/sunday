@@ -1,113 +1,90 @@
-// Page header
-div.row > div.col-12.pt-4
-  div.row
-    div.col-lg-6 > h2.mb-0: "Settings"
-    div.col-lg-6.text-lg-end.align-self-center
-      a.btn.btn-primary.btn-sm.rounded-3.btn-action-create-category: "Create Category"
-  div.row.mt-2
-    div.col-lg-12 > div.px-3
-      ul.nav.nav-underline
-        li.nav-item
-          a.nav-link.active href=dashboard("settings"): "General Settings"
-        li.nav-item
-          a.nav-link href=dashboard("settings/users"): "Users"
-        li.nav-item
-          a.nav-link href=dashboard("settings/users"): "Roles & Permissions"
-        li.nav-item
-          a.nav-link href=dashboard("settings/users"): "Notifications"
-
+@include("settings/navigation")
 div.row > div.col-12
   div.card.p-0.rounded-4
-    div.p-4 > div.row
-      div.col-lg-9
-        form method="POST" action=dashboard("settings")
+    form method="POST" action=dashboard("settings")
+      div.p-4 > div.row
+        div.col-lg-9
           div.row > div.col-12
-            h4.h5#site-settings: "Site settings"
-            p: "Configure the general settings."
+            h4#site-settings.h5.mb-0: "Site settings"
+            p.text-muted: "Configure the general settings."
             div.row
               div.col-lg-6
                 div.mb-3
                   label.form-label for="site_name": "Site Name"
                   input.form-control#site_name type="text" name="site_name" placeholder="Enter site name"
                     value=$this["settings"]["data"]["site_name"]
-                  span.form-text: "The name of your site as it will appear in the title bar and other locations."
+                  div.form-text: "The name of your site as it will appear in the title bar and other locations."
                 div.mb-3
                   label.form-label for="site_description": "Site Description"
                   textarea.form-control#site_description name="site_description" rows="3" placeholder="Enter site description":
                     $this["settings"]["data"]["site_description"]
-                  span.form-text: "A brief description of your site for SEO purposes."
+                  div.form-text: "A brief description of your site for SEO purposes."
               div.col-lg-6
                 div.mb-3
                   label.form-label for="site_url": "Site Favicon URL"
                   input.form-control#site_url type="file" name="site_favicon_url"
-                  span.form-text: "The favicon URL displayed in the browser tab. Recommended size is 16x16 or 32x32 pixels."
+                  div.form-text: "The favicon URL displayed in the browser tab. Recommended size is 16x16 or 32x32 pixels."
 
-                div.mb-3
-                  label.form-label for="admin_email": "Site keywords"
+                div
+                  label.form-label for="site_keywords": "Site keywords"
                   textarea.form-control#site_keywords name="site_keywords" rows="3" placeholder="Enter site keywords":
                     $this["settings"]["data"]["site_keywords"]
-                  span.form-text: "Comma-separated keywords for SEO."
+                  div.form-text: "Comma-separated keywords for SEO."
 
-          hr
+          hr.my-4
 
           // Localization settings
           div.row > div.col-12
-            h4.h5.mt-4#localization: "Localization"
-            p: "Set the default language and timezone."
+            h4#localization.h5.mb-0: "Localization"
+            p.text-muted: "Set the default language and timezone."
             div.row
               div.col-lg-6
                 div.mb-3
                   label.form-label for="default_language": "Default Language"
                   select.form-select#default_language name="default_language"
                     option value="en": "English"
-                  span.form-text: "The default language."
+                  div.form-text: "The default language."
               div.col-lg-6
-                div.mb-3
+                div
                   label.form-label for="timezone": "Timezone"
                   select.form-select#timezone name="timezone"
                     option value="UTC": "UTC"
-                  span.form-text: "The default timezone."
+                  div.form-text: "The default timezone."
 
-          hr
+          hr.my-4
 
           // Site visibility
           div.row > div.col-12
-            h4.h5.mt-4#site-visibility: "Site Visibility"
-            p: "Control whether your site is publicly accessible or private."
+            h4#site-visibility.h5.mb-0: "Site Visibility"
+            p.text-muted: "Control whether your site is publicly accessible or private."
             div.row
-              div.col-lg-6 > div.card.rounded-4.shadow-sm > div.card-body > div.form-check.form-switch
+              div.col-lg-6 > div.card.rounded-4.shadow-sm data-card-experimental="Experimental feature" > div.card-body > div.form-check.form-switch
                 input.form-check-input#site_visibility type="checkbox" name="site_visibility" checked
                 label.form-check-label for="site_visibility": "Make site publicly accessible"
-                span.form-text.d-block: "If unchecked, only registered users will be able to access the site"
-              div.col-lg-6 > div.card.rounded-4.shadow-sm > div.card-body > div.form-check.form-switch
+                div.form-text.d-block: "If unchecked, only registered users will be able to access the site"
+              div.col-lg-6 > div.card.rounded-4.shadow-sm  data-card-experimental="Experimental feature" > div.card-body > div.form-check.form-switch
                 input.form-check-input#maintenance_mode type="checkbox" name="maintenance_mode"
                 label.form-check-label for="maintenance_mode": "Enable maintenance mode"
                 div.row.align-items-center
                   div.col-lg-8
-                    span.form-text.d-block: "Display a maintenance page to visitors."
+                    div.form-text.d-block: "Display a maintenance page to visitors."
                   div.col-lg-4.text-center
                     a.btn.btn-sm.btn-outline-secondary.rounded-3.fw-medium.border-2.py-0.px-1 href="#"
-                          target="_blank" rel="noopener noreferrer"
                       span.small: "Edit screen"
 
-      div.col-lg-3 > div.sticky-top.pt-4 style="top: 30px;"
-        div.card.rounded-4.shadow-sm > div.card-body
-          h6: "Sections"
-          ul.nav.flex-column.ps-2 style="list-style-type: square;"
-            li.nav-item
-              a.nav-link.text-light.p-1 href="#site-settings": "Site Settings"
-            li.nav-item
-              a.nav-link.text-light.p-1 href="#localization": "Localization"
-            li.nav-item
-              a.nav-link.text-light.p-1 href="#site-visibility": "Site Visibility"
+        div.col-lg-3 > div.sticky-top.pt-4 style="top: 30px;"
+          div.card.rounded-4.shadow-sm > div.card-body
+            h6: "Sections"
+            ul.nav.flex-column.ps-2 style="list-style-type: square;"
+              li.nav-item
+                a.nav-link.text-light.p-1 href="#site-settings": "Site Settings"
+              li.nav-item
+                a.nav-link.text-light.p-1 href="#localization": "Localization"
+              li.nav-item
+                a.nav-link.text-light.p-1 href="#site-visibility": "Site Visibility"
+          @include "settings/docs"
 
-        div.card.rounded-4.shadow-sm.mt-4 > div.card-body
-          h6: "☀️ Documentation"
-          p.text-muted.small.mb-0: "Discover more about your Sunday application, settings, and features on our website."
-          a.btn.btn-sm.btn-outline-info.mt-2.rounded-3.fw-medium.border-2 href="https://sunday.software/docs"
-                target="_blank" rel="noopener noreferrer": "Check Documentation"
-
-    div.sticky-bottom.rounded-bottom-4.py-3.mt-4.border-top.shadow-lg
-        style="background-color: rgba(0, 0, 0, 0); backdrop-filter: blur(8px);"
-      div.text-end.px-4
-        button.btn.btn-dark.rounded-3 type="submit": "Save Changes"
+      div.sticky-bottom.rounded-bottom-4.py-3.mt-4.border-top.shadow-lg
+          style="background-color: rgba(0, 0, 0, 0); backdrop-filter: blur(8px);"
+        div.text-end.px-4
+          button.btn.btn-dark.rounded-3 type="submit": "Save Changes"

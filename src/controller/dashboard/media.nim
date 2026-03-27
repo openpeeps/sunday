@@ -18,15 +18,12 @@ ctrl getDashboardMedia:
                            .orderDescBy(["uploaded_at"])
                            .getAll()
     render("dashboard.media.list", layout="dashboard", local = &*{
-      "isAuth": isAuth,
       "mediaItems": mediaItems,
     })
 
 ctrl getDashboardMediaUpload:
   ## Renders the media upload form.
-  render("dashboard.media.upload", layout="dashboard", local = &*{
-    "isAuth": isAuth,
-  })
+  render("dashboard.media.upload", layout="dashboard", local = &*{})
 
 ctrl postDashboardMediaUpload:
   ## Handles media file uploads.
@@ -42,7 +39,6 @@ ctrl getDashboardMediaId:
                           .get()
     if likely(not mediaItem.isEmpty):
       render("dashboard.media.detail", layout="dashboard", local = &*{
-        "isAuth": isAuth,
         "mediaItem": mediaItem,
       })
     render("errors.4xx")

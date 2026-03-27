@@ -3,7 +3,7 @@
 html data-bs-theme="dark"
   head
     meta charset="utf-8"
-    title: "Supranim &mdash; Getting Started"
+    title: "Dashboard &mdash; Sunday Publishing Platform"
     meta name="viewport" content="width=device-width, initial-scale=1"
     link rel="icon" href="/assets/favicon-32x32.png" type="image/x-icon"
     link rel="stylesheet" href="/assets/bootstrap.min.css"
@@ -56,26 +56,12 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
               div.user-select-none
                 a.brand.h5.text-decoration-none.d-inline-block.my-2 href="/dashboard"
                   img src="/assets/sunday-icon.svg" width="24px"
-                  span.ms-2: "George's Blog"
+                  span.ms-2.small: "George's Sunday"
               ul#sidebar-navigation.navbar-nav.mt-3.mb-lg-0
                 li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("")
                   icon("flare")
                   span.ms-2: "Overview"
-                li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("posts")
-                  icon("news")
-                  span.ms-2: "Posts"
-                li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("categories")
-                  icon("category")
-                  span.ms-2: "Categories"
-                li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("comments")
-                  icon("message")
-                  span.ms-2: "Comments"
-                li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("pages")
-                  icon("files")
-                  span.ms-2: "Pages"
-                li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("media")
-                  icon("library-photo")
-                  span.ms-2: "Media"
+                // here we'll dynamically inject links provided by plugins
             div.col-12.align-self-end.mb-5
               ul.navbar-nav.ms-auto.mt-3.me-2
                 li.me-3 > a.icon-link.text-dark.text-decoration-none href=dashboard("users")
@@ -90,6 +76,9 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
                 li.me-3 > a.icon-link.text-dark.text-decoration-none href="/auth/logout"
                   icon("logout")
                   span.ms-2: "Logout"
+                li.me-3.mt-2 > a.icon-link.text-dark.text-decoration-none href="/" target="_blank"
+                  icon("external-link")
+                  span.ms-2: "Visit site"
                 li.rounded-4.card.py-2.px-3.mt-4
                   strong
                     // icon("bug")
@@ -99,9 +88,9 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
         section.container-fluid > div.row > div.col-lg-11.offset-lg-1
           div.row
             div.col-lg-7.mt-1
-              form.d-flex.mb-0 role="search" method="GET" action="/dashboard/posts"
+              form.d-flex.mb-0 role="search" method="GET" action="/dashboard/search"
                 div.position-relative.w-100
-                  input.form-control.me-2.rounded-4.border-2 type="search" name="q" placeholder="Search for posts, pages or comments..." aria-label="Search"
+                  input.form-control.me-2.rounded-4.border-2 type="search" name="q" placeholder="Search dashboard" aria-label="Search"
                   button.btn.position-absolute.rounded-pill.border-0.end-0 style="top:2px" type="submit"
                     svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"
                       path stroke="none" d="M0 0h24v24H0z" fill="none"
@@ -109,24 +98,20 @@ html[data-bs-theme="light"] .navbar-nav li a.icon-link:hover {
                       path d="M21 21l-6 -6"
             div.col-lg-5.text-end.align-self-center
               div.d-flex.align-items-center.justify-content-end.gap-3
-                ul.navbar-nav.mb-2.mb-lg-0.me-auto
-                  li > a.nav-link href="/":
-                    icon("external-link")
-                    span.ms-1: "Visit website"
                 div.dropdown.d-inline-block
                   a.text-decoration-none.text-dark href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                    img.me-2 style="border-radius:14px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdata.ipic.ai%2Fimages%2FdSwbAmVLo4MuUIw_1712121162.png&f=1&nofb=1&ipt=c9b6d2f2c8207f17a55627851a4e636cab6f5bec37ba8d299c7d05712697f877" width="36" height="36" alt="User Avatar"
+                    img.me-2 style="border-radius:14px" src="https://media.tenor.com/eo4zzCoaSDwAAAAM/too-much-micro-brewed-coffee.gif" width="36" height="36" alt="User Avatar"
                     span: "George Lemon"
                   ul.dropdown-menu.dropdown-menu-end.rounded-3
                     li > a.dropdown-item href=dashboard("profile"): "Profile"
                     li > a.dropdown-item href="/auth/logout": "Logout"
           // The `@view` macro is a special macro that injects
           // the content of the specific view into this layout.
-          div.row > div.col-lg-12.px-4
+          div.row > div.col-lg-12.ps-4
             @view
 
       footer.row.mb-4 > div.col-12.text-center > small.text-muted
-        p.mt-4.mb-0: "Sunday &mdash; publishing platform | Made by Humans from OpenPeeps"
+        p.mt-4.mb-0: "Sunday Publishing Platform | Made by Humans from OpenPeeps"
         p.mb-0: " &copy; OpenPeeps & Contributors | AGPLv3 License"
 
     // Connects to the Watchout server to listen

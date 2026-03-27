@@ -5,8 +5,11 @@
 #     Made by Humans from OpenPeeps
 #     https://github.com/openpeeps/sunday
 
+import std/json
+import pkg/[ozark, jsony]
 import pkg/supranim/middleware
-import ../provider/session
+
+import ../provider/[session, db]
 
 newMiddleware authenticate:
   ## Checks if the user is authenticated. If not, redirects to the login page.
@@ -19,8 +22,18 @@ newMiddleware authenticate:
 newMiddleware membership:
   ## Checks if the user is authenticated and has an active
   ## membership. If not, redirects to the login page.
+  withDBPool do:
+    let currentSettings = Models.table(Settings).selectAll().getAll().first()
+    let settings = fromJson(currentSettings.getData())
+    if settings["site_visibility"].getBool():
+      next() # continue to the next middleware
+  abort("/auth/login") # redirects to `GET /auth/login` page
+
+newMiddleware adminOnly:
+  ## Checks if the user is authenticated and has an admin role.
+  ## If not, redirects to the login page.
   withSession do:
     let userData = req.getClientData()
-    if userSession.isAuthenticated():
+    if userSession.isAuthenticated(): # and userData["role"].getStr() == "admin":
       next() # continue to the next middleware
   abort("/auth/login") # redirects to `GET /auth/login` page

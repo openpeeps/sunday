@@ -1,6 +1,6 @@
 div.row.vh-100.align-items-center
   div.col-xl-8.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
-    div.col-lg-7 > div.p-5.my-5 > div.p-5
+    div.col-lg-7 > div.p-5.my-3 > div.px-5.pt-5.pb-3
       h4.h6.d-block.mb-2 > a.text-decoration-none.text-light href="/auth/login": "&#8592; Back to login"
       h1.display-6.fw-bold.mb-3: "Create an account"
       
@@ -26,6 +26,10 @@ div.row.vh-100.align-items-center
               input.form-check-input name="terms" type="checkbox" id="terms"
               small: "I agree to the terms and conditions"
           button.btn.btn-primary.border-2.rounded-3.px-4.fw-bold: "Register"
+        
+        div.row.mt-4 > div.col-12 > ul.list-unstyled.d-flex.justify-content-center.gap-3
+          li > a href="/legal/terms-and-conditions": "Terms and conditions"
+          li > a href="/legal/privacy-policy": "Privacy Policy"
 
     div.col-lg-5.bg-cover.position-relative style="background-image:url(" & $app["login_cover"] & ")"
       div.d-flex.flex-column.h-100

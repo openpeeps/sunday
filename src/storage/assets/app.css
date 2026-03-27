@@ -211,7 +211,45 @@ html[data-bs-theme='light'] .reply-box-area[data-has-draft="true"]::before {
   );
 }
 
-
 .card .sticky-bottom {
   box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.40), 0 -10px 40px rgba(0,0,0,.15) !important
+}
+
+.card[data-card-experimental] {
+  position: relative;
+}
+
+.card[data-card-experimental]:after {
+  content: attr(data-card-experimental);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(161, 151, 55, 0.8);
+  color: white;
+  padding: 1px 5px;
+  font-size: 10px;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.card.bg-pseudo-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.card.bg-pseudo-gradient:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgb(36, 36, 36));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card.bg-pseudo-gradient .card-body {
+  position: relative;
+  z-index: 1;
 }

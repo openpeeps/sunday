@@ -1,0 +1,80 @@
+@include("settings/navigation")
+div.row > div.col-12
+  div.card.p-0.rounded-4
+    div.p-4 > div.row
+      div.col-lg-9
+        div.row > div.col-12
+          h4#updates.h5.mb-0: "Updates"
+          p.text-muted: "Keep your Sunday installation up to date with the latest features and security patches."
+          div.row
+            div.col-lg-12 > div.card.rounded-4.shadow-sm data-card-experimental="Experimental feature" > div.card-body
+              div.row.align-items-center
+                div.col-lg-1.text-center
+                  img.img-fluid src="/assets/sunday-icon.svg"
+                div.col-lg-8
+                  h6.mb-1: "Sunday v0.1.1 is available!"
+                  span.text-muted.small.d-block style="line-height:normal": "Released on March 23, 2026. This update includes performance improvements and bug fixes."
+                    a.ms-1 href="#": "View more details"
+                div.col-lg-3.text-center
+                  button.btn.btn-sm.btn-outline-light.rounded-3.fw-medium.border-2.py-0.px-1.small: "Upgrade now"
+        hr.my-4
+        div.row > div.col-12
+          h4#export-and-backup.h5.mb-0: "Backup & Import"
+          p.text-muted: "Export and import your database to keep your data safe and easily transferable between environments."
+          div.row
+            div.col-lg-6 > div.card.rounded-4.shadow-sm > div.card-body
+              h6.mb-1: "Export as SQL"
+              span.text-muted.small.d-block.mb-2 style="line-height:normal": "Suitable for database backups and migrations, preserving data integrity and relationships."
+              form data-js-action=dashboard("settings/backup") data-js-downloadable="true"
+                button.btn.btn-sm.btn-outline-info.rounded-3.fw-medium.border-2.py-0.px-1.small data-js-submit="Downloading...": "Download database"
+            div.col-lg-6 > div.card.rounded-4.shadow-sm > div.card-body
+              h6.mb-1: "Import from SQL"
+              span.text-muted.small.d-block.mb-2 style="line-height:normal": "Importing from an SQL file is not yet supported. For now, you can use your database management tool to import the SQL backup if needed."
+        hr.my-4
+        div.row > div.col-12
+          h4#memory-management.h5.mb-0: "Memory management"
+          p.text-muted: "Free up unused memory back to the operating system."
+          div.row
+            div.col-lg-12 > div.card.rounded-4.shadow-sm data-card-experimental="Experimental feature" > div.card-body
+              div.row.align-items-center
+                div.col-lg-4
+                  h6.mb-1: "Manage memory usage"
+                  span.text-muted.small.d-block style="line-height:normal": "Memory usage may not decrease immediately after freeing"
+                div.col-lg-5.border-start.border-end
+                  div#memory-stats
+                div.col-lg-3.text-center
+                  form data-js-action=dashboard("settings/freememory")
+                    button.btn.btn-sm.btn-outline-secondary.rounded-3.fw-medium.border-2.py-0.px-1.small
+                      type="submit" data-js-submit="Freeing memory...": "Free unused memory"
+
+      div.col-lg-3 > div.sticky-top.pt-4 style="top: 30px;"
+        div.card.rounded-4.shadow-sm > div.card-body
+          h6: "Sections"
+          ul.nav.flex-column.ps-2 style="list-style-type: square;"
+            li.nav-item
+              a.nav-link.text-light.p-1 href="#updates": "Updates"
+            li.nav-item
+              a.nav-link.text-light.p-1 href="#export-and-backup": "Export & backup"
+            li.nav-item
+              a.nav-link.text-light.p-1 href="#memory-management": "Memory Management"
+        @include "settings/docs"
+
+@js
+document.addEventListener('DOMContentLoaded', function() {
+  fetch("/dashboard/settings/stats")
+    .then(response => response.json())
+    .then(data => {
+      // create a new div element to display the stats
+      const statsDiv = document.createElement('div');
+      statsDiv.classList.add('small');
+      statsDiv.innerHTML = `
+        <p class="mb-1"><strong class="text-muted">System information</strong><br>${data.total_cores} CPUs &bullet; ${(data.total_ram_bytes / (1024 * 1024 * 1024)).toFixed(2)} GB RAM</p>
+        <p class="mb-1"><strong class="text-muted">Usage stats</strong><br>${data.cpu_usage_percent.toFixed(2)}% CPU &bullet; ${(data.memory_usage_bytes / (1024 * 1024)).toFixed(2)} MB RAM</p>
+      `;
+      // append the stats div to the memory management card body
+      document.querySelector('#memory-stats').appendChild(statsDiv);
+    }).catch(error => console.error('Error fetching stats:', error));
+  
+  UI.ClientSideForms.init()	
+});
+@end

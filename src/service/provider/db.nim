@@ -43,7 +43,7 @@ initService DB[Global]:
 
           # create database tables if not exists
           Models.table(Settings).prepareTable().exec()
-          Models.table(MediaLibrary).prepareTable().exec()
+          Models.table(Plugins).prepareTable().exec()
 
           # categories and tags
           Models.table(Categories).prepareTable().exec()
@@ -53,11 +53,9 @@ initService DB[Global]:
           Models.table(Posts).prepareTable().exec()
           Models.table(PostCategories).prepareTable().exec()
           Models.table(PostTags).prepareTable().exec()
-          Models.table(MediaPost).prepareTable().exec()
 
-          # Pages and media associations
+          # Pages
           Models.table(Pages).prepareTable().exec()
-          Models.table(MediaPage).prepareTable().exec()
 
           # user related tables
           Models.table(Users).prepareTable().exec()
@@ -66,26 +64,36 @@ initService DB[Global]:
           Models.table(UserAccountEmailConfirmations).prepareTable().exec()
           Models.table(UserAccountPasswordResets).prepareTable().exec()
 
+          # user roles and permissions
+          Models.table(UserRoles).prepareTable().exec()
+          Models.table(Permissions).prepareTable().exec()
+          Models.table(RoleHasPermissions).prepareTable().exec()
+          Models.table(UserHasPermissions).prepareTable().exec()
+          Models.table(UserHasRoles).prepareTable().exec()
+
           when not defined release:
-            # the following code is used to create a test user account.
-            # this code should be removed in production
-            # and should be moved to a seeder or a migration file.
+            # when running in development mode, checks if there are any
+            # users in the database. if not (first time setup), it creates
+            # a default demo user.
             let userRes = Models.table(Users)
-                                .selectAll().where("id", "1").getAll()
+                                .selectAll().where("id", "1")
+                                .getAll()
             if userRes.isEmpty:
               event().emit("account.register", some(@["test@example.com", "strong password here"]))
 
-            let hasSettings = Models.table(Settings).selectAll().getAll().isEmpty == false
-            if not hasSettings:
-              Models.table(Settings).insert({
-                "tab": "general",
-                "description": "General application settings",
-                "data": toJson(%*{
-                  "site_name": "Awesome Sunday Blog",
-                  "site_description": "Just another blog powered by Sunday",
-                  "site_keywords": "blog, sunday, cms, nim, supranim",
-                })
-              }).exec()
+          # first time setup
+          let hasSettings = Models.table(Settings).selectAll().getAll().isEmpty == false
+          if not hasSettings:
+            Models.table(Settings).insert({
+              "tab": "general",
+              "description": "General application settings",
+              "data": toJson(%*{
+                "site_name": "Awesome Sunday Blog",
+                "site_description": "Just another blog powered by Sunday",
+                "site_keywords": "blog, sunday, cms, nim, supranim",
+                "site_visibility": true
+              })
+            }).exec()
 
-      except DbError:
-        displayError("Database connection failed. Please check your database settings.")
+      except DbError as e:
+        displayError("Database error: " & e.msg)

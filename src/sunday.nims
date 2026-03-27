@@ -25,3 +25,5 @@ else:
   let assetsPath = absolutePath(joinPath(getProjectPath() / "storage", "assets"))
   if dirExists(assetsPath):
     exec "supra bundle.assets \"" & assetsPath & "\" \"" & outputEmbedAssets & "\""
+
+--path:"/Users/georgelemon/Development/packages/supranim-packages/pluginkit/src"
