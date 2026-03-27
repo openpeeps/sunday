@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="https://raw.githubusercontent.com/openpeeps/sunday/main/.github/sunday_publishing_platform.png" alt="Sunday Publishing Platform" width="256px" height="160px"><br>
   🌞 Sunday &mdash; A simple publishing platform powered by Supranim<br>
   Compiled &bullet; Lightweight &bullet; Fast &bullet; 👑 Written in Nim language
 </p>
