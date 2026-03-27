@@ -24,8 +24,11 @@
 - Beautiful dashboard UI powered by **Bootstrap 5**
 - Themes system for easy customization based on **Tim Engine**
 
+
 > [!NOTE]
 > Sunday is still in active development. Expect frequent updates and new features as we work towards a stable release.
+
+<img src="https://raw.githubusercontent.com/openpeeps/sunday/main/.github/screenshot_01.png" alt="Sunday Defaul Theme" width="100%"><img src="https://raw.githubusercontent.com/openpeeps/sunday/main/.github/screenshot_02.png" alt="Sunday Defaul Theme" width="100%">
 
 ### ❤ Contributions & Support
 - 🐛 Found a bug? [Create a new Issue](https://github.com/openpeeps/sunday/issues)
