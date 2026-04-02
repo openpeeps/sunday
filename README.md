@@ -21,24 +21,25 @@
 - Media management with file uploads
 - Tiptap-based rich text editor
 - Native plugin system for extensibility
-- Beautiful dashboard UI powered by **Bootstrap 5**
+- Beautiful dashboard UI powered by **Bootstrap5**
 - Themes system for easy customization based on **Tim Engine**
 
 > [!NOTE]
 > Sunday is still in active development. Expect frequent updates and new features as we work towards a stable release.
 
-### About
-Sunday is an ambitious project to create the missing piece in the Nim ecosystem: a modern, good-looking, and easy-to-use publishing platform for indie developers, bloggers and content creators. Sunday will use the power of Nim, as a compiled language, to deliver a fast and efficient experience for both users and developers. With a focus on simplicity, extensibility (via runtime shared libraries) and performance (low memory footprint and cpu usage)
+## About
+Sunday is an ambitious project to create the missing piece in the Nim ecosystem: a modern, good-looking, and easy-to-use publishing platform for indie developers, bloggers and content creators.
 
+We are using the power of the [Nim programming language](https://github.com/nim-lang/) and the Supranim web framework to build a platform that is not only fast and efficient but also a joy to use and customize. There will be themes, native plugins, and a beautiful dashboard interface to manage your content! 🌞
 
-### 😍 Screenshots
+## 😍 Screenshots
 Here you can find some hot off-the-press screenshots of the current state of Sunday. Keep in mind that the UI is still a work in progress and may change significantly before the stable release.
 <details>
   <summary>🔥 Click to expand screenshots 👀</summary>
   <img src="https://raw.githubusercontent.com/openpeeps/sunday/main/.github/screenshot_011.png" alt="Sunday Defaul Theme" width="100%"><img src="https://raw.githubusercontent.com/openpeeps/sunday/main/.github/screenshot_03.png" alt="Sunday Auth Preview" width="100%"><img src="https://raw.githubusercontent.com/openpeeps/sunday/main/.github/screenshot_021.png" alt="Sunday Dashboard Preview" width="100%">
 </details>
 
-### Development
+## Development
 
 > [!NOTE]
 > Documentation is still a work in progress, many details are not yet documented, are incomplete or may be outdated.
