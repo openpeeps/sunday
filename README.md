@@ -15,7 +15,7 @@
 
 ## Key Features
 - Compiled, fast and lightweight with a small memory footprint
-- Built on top of the [Supranim web framework](https://github.com/supranin/supranim)
+- Built on top of the [Supranim web framework](https://github.com/supranim/supranim)
 - Posts, pages, comments, categories and tags
 - User authentication and management
 - Media management with file uploads
